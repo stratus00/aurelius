@@ -1,0 +1,16 @@
+# real config has the hotspot password
+config.py
+!firmware/config.example.py
+
+# relay venv
+.venv/
+__pycache__/
+*.pyc
+
+# mac
+.DS_Store
+
+# Pico runtime files
+lists.json
+lists.tmp
+error.log
