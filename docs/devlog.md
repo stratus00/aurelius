@@ -14,3 +14,9 @@ shorthand. newest at bottom. did / broke / fix / next.
 - broke: buttons — reads wrong / stuck. long debug session.
 - fix: buttons have to bridge the center gap (e<->f). signal on e side, GND on f side -> right blue rail, Pico GND on same rail. all 3 work.
 - lesson: generic 'plug it in near X' advice kept failing. exact row/col coords only.
+
+## 2026-09-08
+- did: Waveshare driver saved to Pico as epaper29.py (EPD_2in9_Landscape). display wired hat-style / direct pin.
+- did: BUSY (GP13) reads 0 after a power cycle -> display alive.
+- broke: init hangs on 'e-Paper busy' forever. suspect PULL_UP on BUSY in driver floating it high.
+- next: fix display init. LED tabled. mic not wired.
