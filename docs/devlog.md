@@ -20,3 +20,9 @@ shorthand. newest at bottom. did / broke / fix / next.
 - did: BUSY (GP13) reads 0 after a power cycle -> display alive.
 - broke: init hangs on 'e-Paper busy' forever. suspect PULL_UP on BUSY in driver floating it high.
 - next: fix display init. LED tabled. mic not wired.
+
+## 2026-09-11
+- status v0: MicroPython ok, buttons ok. display stuck on BUSY. LED tabled. mic unwired.
+- planned: multi-list firmware, UP/DOWN scroll, ACTION tap check / hold delete, UP+ACTION voice. LED pulse/blink/double.
+- housing ideas: calculator shell, pager shell, Altoids tin (tin maybe too tight for display).
+- shelving v0. too many unknowns at once.
