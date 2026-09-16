@@ -26,3 +26,7 @@ shorthand. newest at bottom. did / broke / fix / next.
 - planned: multi-list firmware, UP/DOWN scroll, ACTION tap check / hold delete, UP+ACTION voice. LED pulse/blink/double.
 - housing ideas: calculator shell, pager shell, Altoids tin (tin maybe too tight for display).
 - shelving v0. too many unknowns at once.
+
+## 2026-09-15
+- restart from scratch, same parts. vision sharper: Unumusu = antithesis of screen-captured life. e-ink central. minimalism = restraint not polish.
+- did: full build plan — vision, controls, LED language, phases 1-10, firmware files, lists.json model, voice pipeline via relay, power, housing, open decisions.
