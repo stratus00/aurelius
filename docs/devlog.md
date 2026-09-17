@@ -30,3 +30,6 @@ shorthand. newest at bottom. did / broke / fix / next.
 ## 2026-09-15
 - restart from scratch, same parts. vision sharper: Unumusu = antithesis of screen-captured life. e-ink central. minimalism = restraint not polish.
 - did: full build plan — vision, controls, LED language, phases 1-10, firmware files, lists.json model, voice pipeline via relay, power, housing, open decisions.
+
+## 2026-09-17
+- did: pin map. display GP8-13, buttons GP2-4, LED GP15, mic GP16-18. no shared signal pins. 3V3 = pin 36 only.
