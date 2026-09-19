@@ -9,3 +9,4 @@ symptom -> cause -> fix. v0 = first attempt (shelved). numbers = restart.
 | v0-3 | v0 display | lots of guessing on hat/socket pin mapping | socket is a mirror image of the Pico seen from behind | restart: use the 8-pin cable connector, no mirror mapping |
 | v0-4 | v0 LED | LED circuit never built | stalled on display first | restart: LED done first try in P5 |
 | v0-5 | v0 overall | build stalled | too many new things at once, no per-step proof | restart rule: one part at a time, prove alone, "done when" check per step, test scripts saved |
+| 1 | P1 | SyntaxError in Shell, wipe output cut off | pasted into wrong place | rerun `import os; os.listdir()` to confirm clean. reflash != wipe |

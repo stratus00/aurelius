@@ -33,3 +33,7 @@ shorthand. newest at bottom. did / broke / fix / next.
 
 ## 2026-09-17
 - did: pin map. display GP8-13, buttons GP2-4, LED GP15, mic GP16-18. no shared signal pins. 3V3 = pin 36 only.
+
+## 2026-09-19
+- P1: MicroPython already on it, v1.28.0, Pico 2 W w/ RP2350. no reflash needed.
+- P1: reflashing doesn't delete files -> wipe() everything from v0. onboard LED toggles.
