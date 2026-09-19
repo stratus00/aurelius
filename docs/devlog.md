@@ -37,3 +37,4 @@ shorthand. newest at bottom. did / broke / fix / next.
 ## 2026-09-19
 - P1: MicroPython already on it, v1.28.0, Pico 2 W w/ RP2350. no reflash needed.
 - P1: reflashing doesn't delete files -> wipe() everything from v0. onboard LED toggles.
+- P1 done: blink.py saved ON the Pico ([brackets] on tab), blinks x10, prints 'Aurelius: Pico alive'.
