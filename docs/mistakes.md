@@ -12,3 +12,4 @@ symptom -> cause -> fix. v0 = first attempt (shelved). numbers = restart.
 | 1 | P1 | SyntaxError in Shell, wipe output cut off | pasted into wrong place | rerun `import os; os.listdir()` to confirm clean. reflash != wipe |
 | 2 | P1 | ran blink code, thought it was saved | ran in the Shell -> runs on Pico, saves nothing | editor -> File > Save as > Raspberry Pi Pico. [brackets] on tab = on Pico |
 | 3 | P1 | blink code ended up at bottom of the old driver file | old v0 Pico_ePaper-2.9.py tab still open; `*` = unsaved | close tab, Don't Save, Cmd+N for a new tab |
+| 4 | P2 | rail test line errored after replug | replug restarts the Pico, wipes the earlier `from machine import Pin` | import + call on ONE line |
