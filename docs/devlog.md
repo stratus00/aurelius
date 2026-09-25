@@ -42,3 +42,8 @@ shorthand. newest at bottom. did / broke / fix / next.
 ## 2026-09-22
 - P2: Pico seated c1-c20 / h1-h20. j5 -> right +, j3 -> right -, bridged to left rails.
 - P2 done: no multimeter -> GP0 test, left + = 1, left - = 0.
+
+## 2026-09-24
+- P3: board = Pico-ePaper-2.9, V2, B/W. driver = Pico_ePaper-2.9.py (has init_4Gray). saved to Pico as epd_2in9.py.
+- P3: using the 8-pin cable instead of seating on the hat -> Pico stays on breadboard for everything else.
+- P3: BS jumper on 0. wired b11-b17.

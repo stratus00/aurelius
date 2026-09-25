@@ -13,3 +13,5 @@ symptom -> cause -> fix. v0 = first attempt (shelved). numbers = restart.
 | 2 | P1 | ran blink code, thought it was saved | ran in the Shell -> runs on Pico, saves nothing | editor -> File > Save as > Raspberry Pi Pico. [brackets] on tab = on Pico |
 | 3 | P1 | blink code ended up at bottom of the old driver file | old v0 Pico_ePaper-2.9.py tab still open; `*` = unsaved | close tab, Don't Save, Cmd+N for a new tab |
 | 4 | P2 | rail test line errored after replug | replug restarts the Pico, wipes the earlier `from machine import Pin` | import + call on ONE line |
+| 5 | P3 | which driver file? | repo has -B (B/W/red), _D, -C, -B_V4 variants | V2 B/W -> Pico_ePaper-2.9.py. rename to epd_2in9.py — hyphen can't be imported |
+| 6 | P3 | seat display on Pico or use cable? | - | cable. seating pulls Pico off breadboard = dead end. seating only as a diagnostic if wiring fails |

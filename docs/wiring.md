@@ -11,3 +11,21 @@ UNPLUG USB before every wiring change.
 - bottom: right + -> left +, right - -> left - (bridge). split rails? jump the mid gap on all 4.
 - right rows 1-2 = VBUS / VSYS (5 V). stay off.
 - check: snippets/railtest.py (a1 -> left + reads 1, a1 -> left - reads 0).
+
+## P3 — e-ink (8-pin cable, not the hat socket)
+cable plugs into the top connector; M-M jumpers from cable's female tips into breadboard.
+
+| connector | breadboard |
+| --- | --- |
+| VCC | right + rail |
+| GND | right - rail |
+| DIN | b15 (GP11) |
+| CLK | b14 (GP10) |
+| CS | b12 (GP9) |
+| DC | b11 (GP8) |
+| RST | b16 (GP12) |
+| BUSY | b17 (GP13) |
+
+- row 13 = GND pin, leave empty.
+- BS jumper (back, bottom right, "SPI 4-line/3-line") must be 0. factory default.
+- 3V3/VSYS jumper (back, top left): ignore, only matters when seated on the hat.
