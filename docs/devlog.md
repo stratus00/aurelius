@@ -47,3 +47,8 @@ shorthand. newest at bottom. did / broke / fix / next.
 - P3: board = Pico-ePaper-2.9, V2, B/W. driver = Pico_ePaper-2.9.py (has init_4Gray). saved to Pico as epd_2in9.py.
 - P3: using the 8-pin cable instead of seating on the hat -> Pico stays on breadboard for everything else.
 - P3: BS jumper on 0. wired b11-b17.
+
+## 2026-09-26
+- P3: BUSY quick check read 1 (bad sign).
+- fix: busy_diag -> pull-down 1, pull-up 1, after reset 0. display IS powered, just boots stuck busy. one RST pulse -> idle. driver init() resets anyway.
+- likely the whole v0 hang.
