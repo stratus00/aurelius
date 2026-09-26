@@ -177,10 +177,15 @@ class EPD_2in9_Portrait(framebuf.FrameBuffer):
         self.digital_write(self.cs_pin, 1)
         
     def ReadBusy(self):
+        # Aurelius patch: 5 s timeout so a stuck BUSY raises instead of freezing the Pico
         print("e-Paper busy")
-        while(self.digital_read(self.busy_pin) == 1):      #  0: idle, 1: busy
-            self.delay_ms(10) 
-        print("e-Paper busy release")  
+        t = 0
+        while self.digital_read(self.busy_pin) == 1:
+            self.delay_ms(10)
+            t += 10
+            if t > 5000:
+                raise RuntimeError("BUSY stuck high: check wiring/BS jumper")
+        print("e-Paper busy release")
 
     def TurnOnDisplay(self):
         self.send_command(0x22) # DISPLAY_UPDATE_CONTROL_2
@@ -490,10 +495,15 @@ class EPD_2in9_Landscape(framebuf.FrameBuffer):
         self.digital_write(self.cs_pin, 1)
         
     def ReadBusy(self):
+        # Aurelius patch: 5 s timeout so a stuck BUSY raises instead of freezing the Pico
         print("e-Paper busy")
-        while(self.digital_read(self.busy_pin) == 1):      #  0: idle, 1: busy
-            self.delay_ms(10) 
-        print("e-Paper busy release")  
+        t = 0
+        while self.digital_read(self.busy_pin) == 1:
+            self.delay_ms(10)
+            t += 10
+            if t > 5000:
+                raise RuntimeError("BUSY stuck high: check wiring/BS jumper")
+        print("e-Paper busy release")
 
     def TurnOnDisplay(self):
         self.send_command(0x22) # DISPLAY_UPDATE_CONTROL_2

@@ -16,3 +16,4 @@ symptom -> cause -> fix. v0 = first attempt (shelved). numbers = restart.
 | 5 | P3 | which driver file? | repo has -B (B/W/red), _D, -C, -B_V4 variants | V2 B/W -> Pico_ePaper-2.9.py. rename to epd_2in9.py — hyphen can't be imported |
 | 6 | P3 | seat display on Pico or use cable? | - | cable. seating pulls Pico off breadboard = dead end. seating only as a diagnostic if wiring fails |
 | 7 | P3 | BUSY reads 1 before demo | display powered but stuck busy from power-up | busy_diag 1/1/0 -> RST pulse -> idle. driver resets on init -> demo works |
+| 8 | P3 | stock ReadBusy loops forever if BUSY stuck | no timeout in Waveshare driver | 5 s timeout. NOTE: file has 2 ReadBusy (Portrait + Landscape). Cmd+F lands on Portrait first; Landscape is the one used -> make sure the Pico copy has BOTH patched (repo copy does) |

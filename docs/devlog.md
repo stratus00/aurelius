@@ -52,3 +52,4 @@ shorthand. newest at bottom. did / broke / fix / next.
 - P3: BUSY quick check read 1 (bad sign).
 - fix: busy_diag -> pull-down 1, pull-up 1, after reset 0. display IS powered, just boots stuck busy. one RST pulse -> idle. driver init() resets anyway.
 - likely the whole v0 hang.
+- P3: ReadBusy patched w/ 5 s timeout -> RuntimeError instead of frozen Pico. demo ran: text, shapes, 0-9 partials, gray bands, sleep.
