@@ -53,3 +53,6 @@ shorthand. newest at bottom. did / broke / fix / next.
 - fix: busy_diag -> pull-down 1, pull-up 1, after reset 0. display IS powered, just boots stuck busy. one RST pulse -> idle. driver init() resets anyway.
 - likely the whole v0 hang.
 - P3: ReadBusy patched w/ 5 s timeout -> RuntimeError instead of frozen Pico. demo ran: text, shapes, 0-9 partials, gray bands, sleep.
+
+## 2026-09-27
+- P3 done: hello.py draws AURELIUS / UU002 - Unumusu Laboratory. unplugged, text stays. the wall from v0 is down.
