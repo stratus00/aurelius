@@ -56,3 +56,7 @@ shorthand. newest at bottom. did / broke / fix / next.
 
 ## 2026-09-27
 - P3 done: hello.py draws AURELIUS / UU002 - Unumusu Laboratory. unplugged, text stays. the wall from v0 is down.
+
+## 2026-09-29
+- P4: buttons rows 24-36, diagonal wiring (works any rotation). below the Pico so nothing shorts Pico pins.
+- P4 done: each prints own name pressed/released, no crosstalk, quiet when idle. zero rework vs v0.

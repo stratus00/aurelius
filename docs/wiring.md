@@ -29,3 +29,15 @@ cable plugs into the top connector; M-M jumpers from cable's female tips into br
 - row 13 = GND pin, leave empty.
 - BS jumper (back, bottom right, "SPI 4-line/3-line") must be 0. factory default.
 - 3V3/VSYS jumper (back, top left): ignore, only matters when seated on the hat.
+
+## P4 — buttons (rows 24-36, diagonal wiring)
+rows 1-20 are Pico pins on both sides -> a button there would short two pins. so below.
+4-leg button: legs paired. DIAGONAL corners never connected until pressed -> works any rotation.
+
+| button | legs (cols e+f) | signal | ground |
+| --- | --- | --- | --- |
+| UP | rows 24 & 26 | b4 -> b24 | j26 -> right - |
+| DOWN | rows 29 & 31 | b5 -> b29 | j31 -> right - |
+| ACTION | rows 34 & 36 | b6 -> b34 | j36 -> right - |
+
+signal = top row left side. ground = bottom row right side. constant "pressed" = not straddling, rotate 90.
