@@ -60,3 +60,7 @@ shorthand. newest at bottom. did / broke / fix / next.
 ## 2026-09-29
 - P4: buttons rows 24-36, diagonal wiring (works any rotation). below the Pico so nothing shorts Pico pins.
 - P4 done: each prints own name pressed/released, no crosstalk, quiet when idle. zero rework vs v0.
+
+## 2026-10-01
+- P5: blue 5 mm LED + 220 ohm on GP15, rows 40-42.
+- P5 done: blinks x3, PWM breathing smooth.

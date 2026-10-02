@@ -41,3 +41,15 @@ rows 1-20 are Pico pins on both sides -> a button there would short two pins. so
 | ACTION | rows 34 & 36 | b6 -> b34 | j36 -> right - |
 
 signal = top row left side. ground = bottom row right side. constant "pressed" = not straddling, rotate 90.
+
+## P5 — LED (rows 40-42)
+| part | from | to |
+| --- | --- | --- |
+| jumper | b20 (GP15) | b40 |
+| resistor 220 ohm | d40 | f40 (across gap) |
+| LED long leg (+) | h40 | |
+| LED short leg (-, flat rim side) | h42 | |
+| jumper | j42 | right - rail |
+
+path: GP15 -> row 40 L -> resistor -> row 40 R -> LED -> row 42 R -> GND.
+never lights = LED backwards or resistor not across gap.
