@@ -64,3 +64,7 @@ shorthand. newest at bottom. did / broke / fix / next.
 ## 2026-10-01
 - P5: blue 5 mm LED + 220 ohm on GP15, rows 40-42.
 - P5 done: blinks x3, PWM breathing smooth.
+
+## 2026-10-03
+- recap P1-P5: Pico alive, rails live, display draws + holds, 3 buttons clean, LED blinks + breathes.
+- next: P6 mic -> P7 Wi-Fi + relay -> P8 firmware.
