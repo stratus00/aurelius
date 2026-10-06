@@ -18,3 +18,4 @@ symptom -> cause -> fix. v0 = first attempt (shelved). numbers = restart.
 | 7 | P3 | BUSY reads 1 before demo | display powered but stuck busy from power-up | busy_diag 1/1/0 -> RST pulse -> idle. driver resets on init -> demo works |
 | 8 | P3 | stock ReadBusy loops forever if BUSY stuck | no timeout in Waveshare driver | 5 s timeout. NOTE: file has 2 ReadBusy (Portrait + Landscape). Cmd+F lands on Portrait first; Landscape is the one used -> make sure the Pico copy has BOTH patched (repo copy does) |
 | 9 | P5 | which LED? | - | single-color 2-leg 5 mm. blue + 220 ohm = dim calm glow. 4-leg RGB needs 3 pins, skip. 220 ohm = red-red-brown |
+| 10 | P6 | Thonny: port /dev/cu.usbmodem142201 no longer exists | Pico got a new port name after replug | bottom-right > Configure interpreter > auto-detect port > Stop. no usbmodem at all -> unplug, look for 3V3-GND short |

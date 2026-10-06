@@ -68,3 +68,6 @@ shorthand. newest at bottom. did / broke / fix / next.
 ## 2026-10-03
 - recap P1-P5: Pico alive, rails live, display draws + holds, 3 buttons clean, LED blinks + breathes.
 - next: P6 mic -> P7 Wi-Fi + relay -> P8 firmware.
+
+## 2026-10-05
+- syscheck.py: one-click check (LEDs, 5 s button window, display). passed after the board sat a while.
