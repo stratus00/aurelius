@@ -71,3 +71,7 @@ shorthand. newest at bottom. did / broke / fix / next.
 
 ## 2026-10-05
 - syscheck.py: one-click check (LEDs, 5 s button window, display). passed after the board sat a while.
+
+## 2026-10-07
+- P6: INMP441 = round board w/ 6 holes + a LOOSE 6-pin header. has to be soldered. no iron -> P6 blocked.
+- mictest.py written, UNTESTED. skipping to P7.

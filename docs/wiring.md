@@ -53,3 +53,18 @@ signal = top row left side. ground = bottom row right side. constant "pressed" =
 
 path: GP15 -> row 40 L -> resistor -> row 40 R -> LED -> row 42 R -> GND.
 never lights = LED backwards or resistor not across gap.
+
+## P6 — mic (PLANNED, header not soldered yet)
+M-F jumpers: female on mic, male in breadboard. right side of Pico.
+
+| mic | breadboard |
+| --- | --- |
+| SCK | j20 (GP16) |
+| WS | j19 (GP17) |
+| SD | j17 (GP18) |
+| VDD | right + rail (3.3 V!) |
+| GND | right - rail |
+| L/R | right - rail |
+
+- j18 = GND pin, leave empty.
+- soldering: header SHORT ends in from the chip side, long pins out that side; sound hole (chip-free side) faces out, uncovered.
