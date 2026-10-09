@@ -75,3 +75,8 @@ shorthand. newest at bottom. did / broke / fix / next.
 ## 2026-10-07
 - P6: INMP441 = round board w/ 6 holes + a LOOSE 6-pin header. has to be soldered. no iron -> P6 blocked.
 - mictest.py written, UNTESTED. skipping to P7.
+
+## 2026-10-08
+- P7: network = iPhone hotspot (Pico = 2.4 GHz only, no eduroam).
+- broke: SSID mismatch -> renamed phone to JacobsiPhone. still status -2.
+- fix: Personal Hotspot screen open + Maximize Compatibility ON + Allow Others toggle. wifiscan showed it. Pico connected.

@@ -20,3 +20,5 @@ symptom -> cause -> fix. v0 = first attempt (shelved). numbers = restart.
 | 9 | P5 | which LED? | - | single-color 2-leg 5 mm. blue + 220 ohm = dim calm glow. 4-leg RGB needs 3 pins, skip. 220 ohm = red-red-brown |
 | 10 | P6 | Thonny: port /dev/cu.usbmodem142201 no longer exists | Pico got a new port name after replug | bottom-right > Configure interpreter > auto-detect port > Stop. no usbmodem at all -> unplug, look for 3V3-GND short |
 | 11 | P6 | can't wire the mic | INMP441 header ships unsoldered | P6 blocked, moved to P7. tilt-header trick = 10 s test only, not reliable |
+| 12 | P7 | SSID never matched | iPhone name used a curly ’ not a typed ' | renamed phone to JacobsiPhone. caps count. quotes = Python string, not part of name |
+| 13 | P7 | wifitest status -2 w/ right name | iPhone only broadcasts hotspot while its screen is open; 5 GHz unless Maximize Compatibility | keep Personal Hotspot screen open, Maximize Compatibility ON, toggle Allow Others. wifiscan.py to see what Pico hears |
