@@ -80,3 +80,6 @@ shorthand. newest at bottom. did / broke / fix / next.
 - P7: network = iPhone hotspot (Pico = 2.4 GHz only, no eduroam).
 - broke: SSID mismatch -> renamed phone to JacobsiPhone. still status -2.
 - fix: Personal Hotspot screen open + Maximize Compatibility ON + Allow Others toggle. wifiscan showed it. Pico connected.
+
+## 2026-10-09
+- P7: relay on the Mac, ~/aurelius-relay, venv, FastAPI + uvicorn. /health works at localhost:8000.
