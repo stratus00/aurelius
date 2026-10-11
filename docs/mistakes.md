@@ -22,3 +22,4 @@ symptom -> cause -> fix. v0 = first attempt (shelved). numbers = restart.
 | 11 | P6 | can't wire the mic | INMP441 header ships unsoldered | P6 blocked, moved to P7. tilt-header trick = 10 s test only, not reliable |
 | 12 | P7 | SSID never matched | iPhone name used a curly ’ not a typed ' | renamed phone to JacobsiPhone. caps count. quotes = Python string, not part of name |
 | 13 | P7 | wifitest status -2 w/ right name | iPhone only broadcasts hotspot while its screen is open; 5 GHz unless Maximize Compatibility | keep Personal Hotspot screen open, Maximize Compatibility ON, toggle Allow Others. wifiscan.py to see what Pico hears |
+| 14 | P7 | (watch) RELAY_URL goes stale | Mac IP changes each hotspot session | re-run ipconfig getifaddr en0 every session before relaytest |

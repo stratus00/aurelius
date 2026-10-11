@@ -83,3 +83,7 @@ shorthand. newest at bottom. did / broke / fix / next.
 
 ## 2026-10-09
 - P7: relay on the Mac, ~/aurelius-relay, venv, FastAPI + uvicorn. /health works at localhost:8000.
+
+## 2026-10-11
+- P7: Mac on same hotspot, IP from `ipconfig getifaddr en0`, RELAY_URL set in config.py.
+- P7 done: Pico prints 200 {"status":"ok","relay":"Aurelius"}, Terminal logs GET /health.
