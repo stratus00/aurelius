@@ -92,3 +92,6 @@ shorthand. newest at bottom. did / broke / fix / next.
 - P8: soldering station picked (YIHUA 926 III) so P6 can resume later.
 - P8 lists.py: lists.json on flash, save after every change, write tmp then swap (power cut never leaves half a file). buttons use index, voice will use find(text).
 - liststest: To-do -> Groceries, Eggs [ ], Milk [x], Rice deleted.
+
+## 2026-10-13
+- P8: power-cycle check. lists.json survived: Groceries current, Eggs unchecked, Milk checked.
