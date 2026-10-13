@@ -87,3 +87,8 @@ shorthand. newest at bottom. did / broke / fix / next.
 ## 2026-10-11
 - P7: Mac on same hotspot, IP from `ipconfig getifaddr en0`, RELAY_URL set in config.py.
 - P7 done: Pico prints 200 {"status":"ok","relay":"Aurelius"}, Terminal logs GET /health.
+
+## 2026-10-12
+- P8: soldering station picked (YIHUA 926 III) so P6 can resume later.
+- P8 lists.py: lists.json on flash, save after every change, write tmp then swap (power cut never leaves half a file). buttons use index, voice will use find(text).
+- liststest: To-do -> Groceries, Eggs [ ], Milk [x], Rice deleted.
