@@ -100,3 +100,8 @@ shorthand. newest at bottom. did / broke / fix / next.
 - P8 display.py v1: black header (name + done/total), 7 rows, checkbox, strike-through, inverse highlight, scrollbar, '..' truncation.
 - partial refresh for moves, full every 10 to clear ghosting.
 - displaytest: builds a 10-item 'Test' list, scrolls through. worked first try. like the look, may restyle later.
+
+## 2026-10-15
+- P8 buttons.py: events UP, DOWN, ACTION, ACTION_LONG, UP+ACTION, DOWN+ACTION. debounce 30 ms, hold 800 ms.
+- taps fire on RELEASE so a combo never starts as a tap. holds fire once while held.
+- navtest: every case in the table behaves.
