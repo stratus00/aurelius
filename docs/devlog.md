@@ -95,3 +95,8 @@ shorthand. newest at bottom. did / broke / fix / next.
 
 ## 2026-10-13
 - P8: power-cycle check. lists.json survived: Groceries current, Eggs unchecked, Milk checked.
+
+## 2026-10-14
+- P8 display.py v1: black header (name + done/total), 7 rows, checkbox, strike-through, inverse highlight, scrollbar, '..' truncation.
+- partial refresh for moves, full every 10 to clear ghosting.
+- displaytest: builds a 10-item 'Test' list, scrolls through. worked first try. like the look, may restyle later.
