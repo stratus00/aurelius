@@ -105,3 +105,5 @@ shorthand. newest at bottom. did / broke / fix / next.
 - P8 buttons.py: events UP, DOWN, ACTION, ACTION_LONG, UP+ACTION, DOWN+ACTION. debounce 30 ms, hold 800 ms.
 - taps fire on RELEASE so a combo never starts as a tap. holds fire once while held.
 - navtest: every case in the table behaves.
+- P8 apptest v1: ACTION tap toggles, ACTION hold deletes, highlight lands on next (or prev if last). each change saved.
+- persistence across power cycle ok.
