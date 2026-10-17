@@ -111,3 +111,8 @@ shorthand. newest at bottom. did / broke / fix / next.
 ## 2026-10-16
 - P8 led.py: background Timer every 20 ms plays (brightness, ticks) patterns -> LED keeps going during screen refresh. blink / double / flicker / pulse(loop).
 - apptest v2: blink on check (not uncheck), double on delete, UP+ACTION toggles pulse (voice preview).
+
+## 2026-10-17
+- P8 display v2: draw_picker() — 'Lists' header, dot on open list, unchecked count right side. shared _scroll/_highlight.
+- apptest v3: two modes. DOWN+ACTION hold opens picker, ACTION opens list (blink), DOWN+ACTION again cancels.
+- all non-voice features work.
