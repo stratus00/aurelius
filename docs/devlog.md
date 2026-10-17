@@ -107,3 +107,7 @@ shorthand. newest at bottom. did / broke / fix / next.
 - navtest: every case in the table behaves.
 - P8 apptest v1: ACTION tap toggles, ACTION hold deletes, highlight lands on next (or prev if last). each change saved.
 - persistence across power cycle ok.
+
+## 2026-10-16
+- P8 led.py: background Timer every 20 ms plays (brightness, ticks) patterns -> LED keeps going during screen refresh. blink / double / flicker / pulse(loop).
+- apptest v2: blink on check (not uncheck), double on delete, UP+ACTION toggles pulse (voice preview).
