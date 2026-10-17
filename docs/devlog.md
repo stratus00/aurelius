@@ -116,3 +116,7 @@ shorthand. newest at bottom. did / broke / fix / next.
 - P8 display v2: draw_picker() — 'Lists' header, dot on open list, unchecked count right side. shared _scroll/_highlight.
 - apptest v3: two modes. DOWN+ACTION hold opens picker, ACTION opens list (blink), DOWN+ACTION again cancels.
 - all non-voice features work.
+- checkpoint: laptop died before the standalone step.
+- next: display.py gets draw_message() + guarded sleep(); new app.py (apptest logic + 1 min idle display sleep); new main.py (auto-run on boot, hold UP at power-on = skip app, crash -> LED flicker + error on screen + error.log).
+- then 4 tests: Run/Stop in Thonny, boot w/ Thonny fully closed, idle sleep, UP escape hatch.
+- after that: voice mode (needs mic soldered).

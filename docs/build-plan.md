@@ -101,7 +101,7 @@ rules:
 
 ## open decisions
 - [ ] voice: push-to-talk (record while held) vs auto-stop on silence
-- [ ] list switching: DOWN+ACTION hold, or picker reached another way?
+- [x] list switching: DOWN+ACTION hold -> picker screen (built)
 - [ ] STT: local vs cloud
 - [ ] relay long-term home: laptop / always-on machine / cloud
 - [ ] checked items: stay until cleared vs vanish after a day
