@@ -26,4 +26,6 @@ symptom -> cause -> fix. v0 = first attempt (shelved). numbers = restart.
 | 15 | P8 | Thonny "Internal error" popup, `<no backend>` | unplugged for the power-cycle test, Thonny never reconnected, typed into a dead Shell | click `<no backend>` -> MicroPython (Raspberry Pi Pico) or Stop. wait for >>> before typing. queued command ran twice after reconnect (harmless) |
 | 16 | P8 | (known limit) very fast taps can drop | buttons not polled during ~0.5 s e-ink refresh | fine at normal speed. interrupts later if it becomes a problem |
 | 17 | P8 | list empty in the next test | deleted every item during the delete test | snippets/refill_test_list.py |
-| 18 | P8 | standalone step not started | laptop died | checkpoint logged, resume at app.py + main.py |
+| 18 | P8 | standalone step not started | laptop died | checkpoint logged, resumed 10-18, all 4 standalone tests pass |
+| 19 | P8 | (design catch) waking from the sleep screen could check off an item | list hidden behind plaque, but the wake press still went to list_view | app v2: first press after the saver only redraws. caught before flashing |
+| 20 | P8 | can't save files from Thonny while app runs | main.py running on the Pico | Stop first, save, then Run main.py or replug w/ Thonny closed |

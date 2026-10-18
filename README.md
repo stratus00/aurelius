@@ -10,9 +10,9 @@ Unumusu Laboratory device #002 — physical to-do list. e-ink screen, 3 buttons,
 | 3 | e-ink display | done |
 | 4 | buttons | done |
 | 5 | LED | done |
-| 6 | INMP441 mic | **blocked** — header needs soldering (station ordered) |
+| 6 | INMP441 mic | **next** — station arrived, header needs soldering |
 | 7 | Wi-Fi + relay | done |
-| 8 | firmware | lists / screen / nav / check+delete / LED / list picker done. next: standalone boot (`app.py` + `main.py`), then voice |
+| 8 | firmware | lists / screen / nav / check+delete / LED / list picker / standalone boot / plaque sleep screen done. next: voice (after P6 mic) |
 | 9 | portable power | not started |
 | 10 | perfboard + housing | not started |
 

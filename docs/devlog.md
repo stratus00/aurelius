@@ -120,3 +120,16 @@ shorthand. newest at bottom. did / broke / fix / next.
 - next: display.py gets draw_message() + guarded sleep(); new app.py (apptest logic + 1 min idle display sleep); new main.py (auto-run on boot, hold UP at power-on = skip app, crash -> LED flicker + error on screen + error.log).
 - then 4 tests: Run/Stop in Thonny, boot w/ Thonny fully closed, idle sleep, UP escape hatch.
 - after that: voice mode (needs mic soldered).
+
+## 2026-10-18
+- P8 standalone: display v3 = draw_message() (error screen now, voice confirms later) + sleep() guarded (only if awake).
+- app.py v1 = apptest v3 logic + idle: 1 min no press -> display deep sleep, list stays on screen, next press = 1 full refresh.
+- main.py: auto-runs on power-up. hold UP at plug-in -> app skipped, onboard LED x3. crash -> traceback to error.log, LED flicker, error on screen.
+- 4 tests pass: Run/Stop in Thonny, boot w/ Thonny fully closed, idle sleep, UP escape hatch. Aurelius = standalone device.
+- sleep screen ("plaque"): big AURELIUS 4x-scaled from the built-in 8x8 font, white on black band w/ inner rules; background = tiled AURELIUS rows slid 36 px each, checkerboard-dithered to grey.
+- 5 styles mocked (plaque / monolith / monolith AVRELIVS / weave / stack), plaque picked.
+- display v4: saver() = draw plaque, full refresh, deep sleep. e-ink holds it w/ power pulled.
+- app v2: idle -> saver(). first press after only wakes (redraws list or picker), no action -> no blind check-offs.
+- 5 tests pass: plaque at ~1 min, wake press does nothing else, next press acts, plaque survives unplug, picker wakes back to picker.
+- tip: IDLE_MS = 10000 while testing, back to 60000 after.
+- next: solder INMP441 headers (P6), then voice mode.
