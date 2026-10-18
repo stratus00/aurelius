@@ -98,7 +98,16 @@ def draw_picker(selected=0, full=False):
     _scrollbar(n, _ptop)
     _push(full)
 
+def draw_message(title, lines=()):
+    epd.fill(WHITE)
+    _header(title)
+    for i, line in enumerate(lines[:ROWS]):
+        epd.text(_fit(line, 36), 4, TOP_Y + 3 + i * ROW_H, BLACK)
+    _push(True)
+
 def sleep():
     global _count
-    epd.sleep()
-    _count = 0     # next draw wakes it with a full refresh
+    if _count:          # only if awake; next draw wakes it with a full refresh
+        epd.sleep()
+        _count = 0
+
