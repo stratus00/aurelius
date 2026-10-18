@@ -54,21 +54,27 @@ signal = top row left side. ground = bottom row right side. constant "pressed" =
 path: GP15 -> row 40 L -> resistor -> row 40 R -> LED -> row 42 R -> GND.
 never lights = LED backwards or resistor not across gap.
 
-## P6 — mic (rows ~46-48, below the LED)
+## P6 — mic (rows 46-48, straddles the gap, below the LED)
 round INMP441 = 2 rows of 3 pins, not 1x6. header snapped into two 3-pin pieces.
-no M-F jumpers -> mic sits ON the breadboard, straddling the center gap (one pin row left of gap, one right).
-each pin = own numbered row on its own side -> no shorts. NEVER both pin rows on the same side (same row strips = shorted).
-M-M jumper from a free hole in each pin's row:
+mic ON the breadboard across the gap (no M-F jumpers). each pin = own row strip -> no shorts.
+NEVER both pin rows on the same side (same row strips = shorted).
 
-| mic | breadboard |
-| --- | --- |
-| SCK | j20 (GP16) |
-| WS | j19 (GP17) |
-| SD | j17 (GP18) |
-| VDD | + rail (3.3 V!) |
-| GND | - rail |
-| L/R | - rail |
+| row | left of gap | right of gap |
+| --- | --- | --- |
+| 46 | SD | SCK |
+| 47 | VDD | WS |
+| 48 | GND | L/R |
+
+| mic | from | to |
+| --- | --- | --- |
+| SCK | j46 | j20 (GP16) |
+| WS | j47 | j19 (GP17) |
+| L/R | j48 | right - rail |
+| SD | a46 | j17 (GP18) |
+| VDD | a47 | left + rail (3.3 V!) |
+| GND | a48 | left - rail |
 
 - j18 = GND pin, leave empty.
-- soldering: breadboard as jig (long pins down), tack one corner, check flat, then rest. sound hole faces up, uncovered.
-- check: tests/mictest.py.
+- left rails = right rails via the P2 bottom bridge.
+- soldering: breadboard as jig (long pins down), tack one corner, check flat, then rest. full shiny cones only.
+- health check: snippets/rawdump.py -> L "low bits used" ~512/512. (full story: docs/audio-debug.md)
