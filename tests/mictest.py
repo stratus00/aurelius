@@ -1,5 +1,5 @@
 # mictest.py — P6. INMP441 live sound meter, 10 s. quiet -> talk -> clap.
-# STATUS: UNTESTED. mic header pins not soldered yet (blocked 10/07, iron ordered).
+# STATUS: tested 10-18, bars jump w/ talk, spike on clap.
 # all 0 = L/R not grounded / SD wrong hole / no VDD. huge + flat = SCK/WS swapped.
 # error about ws = WS must be SCK+1 (GP17).
 from machine import I2S, Pin

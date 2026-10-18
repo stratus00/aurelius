@@ -54,17 +54,21 @@ signal = top row left side. ground = bottom row right side. constant "pressed" =
 path: GP15 -> row 40 L -> resistor -> row 40 R -> LED -> row 42 R -> GND.
 never lights = LED backwards or resistor not across gap.
 
-## P6 — mic (PLANNED, header not soldered yet)
-M-F jumpers: female on mic, male in breadboard. right side of Pico.
+## P6 — mic (rows ~46-48, below the LED)
+round INMP441 = 2 rows of 3 pins, not 1x6. header snapped into two 3-pin pieces.
+no M-F jumpers -> mic sits ON the breadboard, straddling the center gap (one pin row left of gap, one right).
+each pin = own numbered row on its own side -> no shorts. NEVER both pin rows on the same side (same row strips = shorted).
+M-M jumper from a free hole in each pin's row:
 
 | mic | breadboard |
 | --- | --- |
 | SCK | j20 (GP16) |
 | WS | j19 (GP17) |
 | SD | j17 (GP18) |
-| VDD | right + rail (3.3 V!) |
-| GND | right - rail |
-| L/R | right - rail |
+| VDD | + rail (3.3 V!) |
+| GND | - rail |
+| L/R | - rail |
 
 - j18 = GND pin, leave empty.
-- soldering: header SHORT ends in from the chip side, long pins out that side; sound hole (chip-free side) faces out, uncovered.
+- soldering: breadboard as jig (long pins down), tack one corner, check flat, then rest. sound hole faces up, uncovered.
+- check: tests/mictest.py.

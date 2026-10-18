@@ -29,3 +29,6 @@ symptom -> cause -> fix. v0 = first attempt (shelved). numbers = restart.
 | 18 | P8 | standalone step not started | laptop died | checkpoint logged, resumed 10-18, all 4 standalone tests pass |
 | 19 | P8 | (design catch) waking from the sleep screen could check off an item | list hidden behind plaque, but the wake press still went to list_view | app v2: first press after the saver only redraws. caught before flashing |
 | 20 | P8 | can't save files from Thonny while app runs | main.py running on the Pico | Stop first, save, then Run main.py or replug w/ Thonny closed |
+| 21 | P6 | header strip didn't match the mic | round INMP441 has 2x3 holes, not 1x6 | snap header into two 3-pin pieces. breadboard placement must straddle the gap or pins short |
+| 22 | P6 | planned M-F jumpers, had none | wiring plan assumed mic off-board | mic on breadboard across the gap, M-M jumpers from each pin's row |
+| 23 | P6 | sharp conical tip swap | wanted precision | small chisel (0.8D/1.2D) heats pin + pad better; swap tips cold, tin new tip immediately |

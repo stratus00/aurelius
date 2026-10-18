@@ -132,4 +132,7 @@ shorthand. newest at bottom. did / broke / fix / next.
 - app v2: idle -> saver(). first press after only wakes (redraws list or picker), no action -> no blind check-offs.
 - 5 tests pass: plaque at ~1 min, wake press does nothing else, next press acts, plaque survives unplug, picker wakes back to picker.
 - tip: IDLE_MS = 10000 while testing, back to 60000 after.
-- next: solder INMP441 headers (P6), then voice mode.
+- P6: YIHUA 926 III arrived. 340 C, tip tinned. round INMP441 = 2x3 holes -> header snapped 3+3, breadboard jig, one corner tacked + checked flat, then rest. 6 clean cones.
+- P6 wiring: mic straddles center gap ~rows 46-48 (no M-F jumpers), M-M from each pin row: SCK j20, WS j19, SD j17, VDD +, GND -, L/R -.
+- P6 done: mictest bars jump on talk, spike on clap. raw level low-ish (INMP441 is quiet; voice mode adds software gain).
+- next: voice mode (last P8 piece).
