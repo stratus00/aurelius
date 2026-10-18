@@ -111,3 +111,10 @@ def sleep():
         epd.sleep()
         _count = 0
 
+def saver():
+    # sleep screen, then deep sleep; e-ink keeps the image with no power
+    if _count:
+        import screensaver
+        screensaver.draw(epd)
+        _push(True)
+        sleep()

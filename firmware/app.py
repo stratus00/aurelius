@@ -1,13 +1,14 @@
-# app.py — Aurelius: list view, list picker, LED feedback
+# app.py — Aurelius: list view, list picker, LED feedback, sleep screen
 import time, lists, display, led
 from buttons import Buttons
 
-IDLE_MS = 60000     # put the display to sleep after 1 min without a press
+IDLE_MS = 60000     # show the sleep screen after 1 min without a press
 
 mode = "list"       # "list" or "picker"
 sel = 0             # selected item in list view
 psel = 0            # selected list in picker
 pulsing = False
+asleep = False
 
 def list_view(e):
     global sel, psel, mode, pulsing
@@ -56,7 +57,17 @@ def picker(e):
         mode = "list"
         display.draw_list(sel)
 
+def wake():
+    # first press after the sleep screen only brings the screen back
+    global asleep
+    asleep = False
+    if mode == "list":
+        display.draw_list(sel)
+    else:
+        display.draw_picker(psel)
+
 def run():
+    global asleep
     lists.load()
     btn = Buttons()
     display.draw_list(sel, full=True)
@@ -66,10 +77,13 @@ def run():
         e = btn.poll()
         if e:
             last = time.ticks_ms()
-            if mode == "list":
+            if asleep:
+                wake()
+            elif mode == "list":
                 list_view(e)
             else:
                 picker(e)
-        elif time.ticks_diff(time.ticks_ms(), last) > IDLE_MS:
-            display.sleep()                 # does nothing if already asleep
+        elif not asleep and time.ticks_diff(time.ticks_ms(), last) > IDLE_MS:
+            display.saver()
+            asleep = True
         time.sleep_ms(10)
