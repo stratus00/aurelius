@@ -12,7 +12,7 @@ Unumusu Laboratory device #002 — physical to-do list. e-ink screen, 3 buttons,
 | 5 | LED | done |
 | 6 | INMP441 mic | done — headers soldered, mictest passes |
 | 7 | Wi-Fi + relay | done |
-| 8 | firmware | lists / screen / nav / check+delete / LED / list picker / standalone boot / plaque sleep screen done. next: voice |
+| 8 | firmware | lists / screen / nav / check+delete / LED / list picker / standalone boot / plaque sleep screen done. voice V1 (push-to-talk recording to RAM) done. next: voice upload -> STT -> AI |
 | 9 | portable power | not started |
 | 10 | perfboard + housing | not started |
 
@@ -23,7 +23,7 @@ Unumusu Laboratory device #002 — physical to-do list. e-ink screen, 3 buttons,
 | `tests/` | test scripts saved on the Pico, one per step (`liststest.py`, `navtest.py`, `apptest.py`, ...) |
 | `snippets/` | one-off Shell commands (wipe, rail test, BUSY diag, wifi scan, ...) |
 | `relay/` | FastAPI relay that runs on the Mac (`/health` only so far) |
-| `docs/` | `devlog.md` (what happened), `mistakes.md` (what broke + fix), `build-plan.md`, `pinmap.md`, `wiring.md`, `bom.md` |
+| `docs/` | `devlog.md` (what happened), `mistakes.md` (what broke + fix), `audio-debug.md` (mic audio troubleshooting, first person), `build-plan.md`, `pinmap.md`, `wiring.md`, `bom.md` |
 
 old versions of a file = `git log -p <file>` (e.g. `display.py` v1 list-only -> v2 + picker; `apptest.py` v1 -> v3).
 

@@ -136,3 +136,8 @@ shorthand. newest at bottom. did / broke / fix / next.
 - P6 wiring: mic straddles center gap ~rows 46-48 (no M-F jumpers), M-M from each pin row: SCK j20, WS j19, SD j17, VDD +, GND -, L/R -.
 - P6 done: mictest bars jump on talk, spike on clap. raw level low-ish (INMP441 is quiet; voice mode adds software gain).
 - next: voice mode (last P8 piece).
+- voice decisions: STT local faster-whisper on Mac, AI = DeepSeek (OpenAI-compatible, swap later), push-to-talk.
+- V1 recording: flash-write version hung inside readinto -> RAM buffer version (192 KB). 3.30 s audio / 3.33 s wall = no drops.
+- playback via relay/pcm2wav.py + afplay = static. rawdump v1-v3 -> only top 8 bits arriving -> hardware. rewired + resoldered -> clean audio.
+- full write-up: docs/audio-debug.md.
+- next: V2 upload rec to relay /voice.

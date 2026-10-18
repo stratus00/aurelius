@@ -32,3 +32,8 @@ symptom -> cause -> fix. v0 = first attempt (shelved). numbers = restart.
 | 21 | P6 | header strip didn't match the mic | round INMP441 has 2x3 holes, not 1x6 | snap header into two 3-pin pieces. breadboard placement must straddle the gap or pins short |
 | 22 | P6 | planned M-F jumpers, had none | wiring plan assumed mic off-board | mic on breadboard across the gap, M-M jumpers from each pin's row |
 | 23 | P6 | sharp conical tip swap | wanted precision | small chisel (0.8D/1.2D) heats pin + pad better; swap tips cold, tin new tip immediately |
+| 24 | P8 voice | rectest hangs after LED, Thonny Stop does nothing | flash writes every 32 ms pause interrupts -> I2S stream stalls -> readinto waits forever | record into a 192 KB RAM buffer, write file only after mic off. escape hatch (hold UP at plug-in) to get back in |
+| 25 | P8 voice | SyntaxError line 31 after a one-line edit | paste broke the line | replace whole file instead of patching one line |
+| 26 | P8 voice | MemoryError allocating 160768 bytes | `BUF[:n]` slice = full copy | viper peak() scans in place |
+| 27 | P8 voice | peak 32768 | mic startup spike (~85 ms), only 32 ms skipped | skip ~200 ms (6 reads) |
+| 28 | P6/P8 | playback = loud static, faint voice; mictest had looked fine | marginal SD joint/contact: only top ~8 bits arrived (run of 1s then 0s). + RP2350-E9 pull-down latch on the silent R slot | rawdump v1-v3 to locate, rewired mic rows 46-48 w/ exact holes + resoldered -> 512/512 real words, clean audio. lesson: test what the next stage needs (listen), dump raw data |
