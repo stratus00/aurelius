@@ -10,7 +10,7 @@ _pwm.freq(1000)
 _pwm.duty_u16(0)
 
 # A pattern is a tuple of (brightness, ticks) steps; 1 tick = 20 ms
-BLINK   = ((ON, 6), (0, 1))                               # one 120 ms flash
+BLINK   = ((ON, 6), (0, 1))                               # one ~120 ms flash
 DOUBLE  = ((ON, 5), (0, 5), (ON, 5), (0, 1))              # two quick flashes
 FLICKER = ((ON, 2), (0, 2)) * 6 + ((0, 1),)               # fast, urgent
 PULSE   = tuple((int((1 - math.cos(i * math.pi / 50)) / 2 * ON), 1)
