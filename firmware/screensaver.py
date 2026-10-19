@@ -1,5 +1,5 @@
-# screensaver.py — "plaque" sleep screen: big AURELIUS on a black band,
-# faded tiled background. Drawn into the display buffer; caller pushes it.
+# screensaver.py — sleep screen: big AURELIUS on a black band,
+# patterned background. Drawn into the display buffer; caller pushes it.
 import framebuf
 
 W, H = 296, 128
