@@ -2,20 +2,33 @@
 # raw socket so the 192 KB audio buffer is sent straight from RAM, never copied.
 import network, socket, time, json, config
 
-def wifi(timeout_ms=15000):
+def _wlan():
     w = network.WLAN(network.STA_IF)
     w.active(True)
     try:
         w.config(pm=network.WLAN.PM_NONE)    # power-save off = faster uploads
     except Exception:
         pass
+    return w
+
+def start():
+    # begin joining wifi in the background (called once at boot)
+    w = _wlan()
     if not w.isconnected():
         w.connect(config.WIFI_SSID, config.WIFI_PASS)
-        t0 = time.ticks_ms()
-        while not w.isconnected():
-            if time.ticks_diff(time.ticks_ms(), t0) > timeout_ms:
-                raise OSError("no wifi")
-            time.sleep_ms(200)
+
+def wifi(timeout_ms=10000):
+    # wait for wifi; rejoin if the boot attempt failed (e.g. hotspot was off)
+    w = _wlan()
+    if w.isconnected():
+        return w
+    if w.status() != network.STAT_CONNECTING:
+        w.connect(config.WIFI_SSID, config.WIFI_PASS)
+    t0 = time.ticks_ms()
+    while not w.isconnected():
+        if time.ticks_diff(time.ticks_ms(), t0) > timeout_ms:
+            raise OSError("no wifi")
+        time.sleep_ms(200)
     return w
 
 def _hostport(url):
@@ -23,7 +36,7 @@ def _hostport(url):
     h, p = (hp.split(":") + ["80"])[:2]
     return h, int(p)
 
-def post_voice(state, pcm, timeout_s=30):
+def post_voice(state, pcm, timeout_s=15):
     st = json.dumps(state).encode()
     host, port = _hostport(config.RELAY_URL)
     s = socket.socket()
@@ -49,5 +62,5 @@ def post_voice(state, pcm, timeout_s=30):
     head, _, body = resp.partition(b"\r\n\r\n")
     code = int(head.split(b" ")[1].decode())
     if code != 200:
-        raise OSError("relay %d" % code)
+        raise ValueError("relay %d" % code)
     return json.loads(body.decode())

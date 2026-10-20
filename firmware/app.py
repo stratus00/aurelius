@@ -1,5 +1,6 @@
-# app.py — Aurelius: list view, list picker, LED feedback, sleep screen
-import time, lists, display, led
+# app.py — Aurelius: list view, list picker, LED feedback, sleep screen, voice
+import time, lists, display, led, net, voicecmd
+from machine import Pin
 from buttons import Buttons
 
 IDLE_MS = 60000     # show the sleep screen after 1 min without a press
@@ -7,11 +8,11 @@ IDLE_MS = 60000     # show the sleep screen after 1 min without a press
 mode = "list"       # "list" or "picker"
 sel = 0             # selected item in list view
 psel = 0            # selected list in picker
-pulsing = False
 asleep = False
+_pins = [Pin(2), Pin(3), Pin(4)]    # UP, DOWN, ACTION (read-only here)
 
 def list_view(e):
-    global sel, psel, mode, pulsing
+    global sel, psel, mode
     n = len(lists.items())
     if e == "UP" and sel > 0:
         sel -= 1
@@ -25,10 +26,14 @@ def list_view(e):
         led.double()
         lists.delete(sel)
         sel = max(0, min(sel, len(lists.items()) - 1))
-    elif e == "UP+ACTION":                  # voice-mode preview (for now)
-        pulsing = not pulsing
-        if pulsing: led.pulse()
-        else: led.off()
+    elif e == "UP+ACTION":                  # voice: hold, speak, release
+        before = lists.current_name()
+        say = voicecmd.run()
+        if lists.current_name() != before:
+            sel = 0
+        sel = max(0, min(sel, len(lists.items()) - 1))
+        display.draw_list(sel)
+        display.toast(say)
         return
     elif e == "DOWN+ACTION":                # open the picker
         mode = "picker"
@@ -66,9 +71,23 @@ def wake():
     else:
         display.draw_picker(psel)
 
+def _settle(btn):
+    # after a voice command: wait for all buttons up, then discard anything
+    # the button handler queued during the long hold (no stray check/delete)
+    while any(p.value() == 0 for p in _pins):
+        time.sleep_ms(10)
+    t0 = time.ticks_ms()
+    while time.ticks_diff(time.ticks_ms(), t0) < 200:
+        btn.poll()
+        time.sleep_ms(10)
+
 def run():
     global asleep
     lists.load()
+    try:
+        net.start()                         # join wifi in the background
+    except Exception as ex:
+        print("wifi start failed:", ex)
     btn = Buttons()
     display.draw_list(sel, full=True)
     print("Aurelius running. Press Stop to quit.")
@@ -76,13 +95,15 @@ def run():
     while True:
         e = btn.poll()
         if e:
-            last = time.ticks_ms()
             if asleep:
                 wake()
             elif mode == "list":
                 list_view(e)
+                if e == "UP+ACTION":
+                    _settle(btn)
             else:
                 picker(e)
+            last = time.ticks_ms()
         elif not asleep and time.ticks_diff(time.ticks_ms(), last) > IDLE_MS:
             display.saver()
             asleep = True

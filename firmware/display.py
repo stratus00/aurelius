@@ -118,3 +118,11 @@ def saver():
         screensaver.draw(epd)
         _push(True)
         sleep()
+
+def toast(msg):
+    # one-line banner over the bottom row of whatever is on screen;
+    # the next normal redraw clears it
+    y = H - ROW_H
+    epd.fill_rect(0, y, W, ROW_H, BLACK)
+    epd.text(_fit(msg, 36), 4, y + 3, WHITE)
+    _push(False)
