@@ -44,6 +44,11 @@ LIVE = [
     "delete the laundry list",               # no such list
     "what time is it",                       # not a list command
     "at mail professor",                     # STT error for "email professor"?
+    "open my lists",
+    "go to my lists",
+    "show me the groceries list",            # names a list -> switch, not show_lists
+    "add milk and then show my lists",
+    "add milk and then go to sleep",         # combined: goes through the AI
 ]
 
 # (name, fake model reply, expected op kinds after validation)
@@ -62,6 +67,10 @@ OFFLINE = [
     ("bad op", {"ops": [{"op": "launch_rocket"}]}, []),
     ("garbage", "not a dict", []),
     ("unicode", {"ops": [{"op": "add", "text": "Cr\u00e8me br\u00fbl\u00e9e \u2014 caf\u00e9"}]}, ["add"]),
+    ("show lists", {"ops": [{"op": "show_lists"}]}, ["show_lists"]),
+    ("add + show", {"ops": [{"op": "add", "list": "Groceries", "text": "Bread"},
+                            {"op": "show_lists"}]}, ["add", "show_lists"]),
+    ("add + sleep", {"ops": [{"op": "add", "text": "Milk2"}, {"op": "sleep"}]}, ["add", "sleep"]),
     ("note only", {"ops": [], "note": "Not a list command"}, []),
 ]
 
@@ -76,8 +85,21 @@ def show(res):
     print("    screen: [" + res["say"] + "]")
 
 
+FAST = ["Sleep.", "Go to sleep.", "Aurelius, sleep.", "Goodnight!", "Hey Aurelius, go to bed."]
+
+
 def offline():
     bad = 0
+    for t in FAST:                                  # no API call: fast path
+        res = vo.transcript_to_ops(t, STATE)
+        ok = [o["op"] for o in res["ops"]] == ["sleep"]
+        bad += not ok
+        print(("PASS " if ok else "FAIL ") + "fast sleep: " + t)
+    for t in ["Open my list.", "Show my lists!", "Go to my lists.", "Aurelius, open all lists."]:
+        res = vo.transcript_to_ops(t, STATE)
+        ok = [o["op"] for o in res["ops"]] == ["show_lists"]
+        bad += not ok
+        print(("PASS " if ok else "FAIL ") + "fast show: " + t)
     for name, raw, want in OFFLINE:
         res = vo.validate(raw, STATE)
         got = [o["op"] for o in res["ops"]]

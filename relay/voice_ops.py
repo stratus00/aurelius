@@ -62,12 +62,15 @@ Operations:
 {"op":"switch","name":N}              show list N on screen
 {"op":"rename_list","name":N,"new":M}
 {"op":"delete_list","name":N}
+{"op":"show_lists"}                   open the screen that lists all lists
+{"op":"sleep"}                        put the device to sleep (always last)
 
 Rules:
 - L, I and N must be copied exactly from STATE. Leave out "list" to mean the current list.
 - A list created earlier in the same command can be used by later ops.
 - T is short, written the way someone writes on a list: first letter capitalized, no filler words.
 - Several items in one sentence means one op per item.
+- "show/open/go to my lists", "my list" or "all lists" with no specific list named means show_lists. Naming one list means switch.
 - The transcript comes from speech recognition and may contain mistakes. When the intent is clear, use the closest match in STATE.
 - Never invent items to check, uncheck or delete.
 - If the command is unclear, not about the lists, or names something not in STATE, return {"ops": [], "note": "<why, under 30 characters>"}.
@@ -81,6 +84,11 @@ Example
 STATE: (same as above)
 TRANSCRIPT: start a camping list with tent and headlamp
 JSON: {"ops":[{"op":"new_list","name":"Camping"},{"op":"add","list":"Camping","text":"Tent"},{"op":"add","list":"Camping","text":"Headlamp"},{"op":"switch","name":"Camping"}],"note":""}
+
+Example
+STATE: (same as above)
+TRANSCRIPT: open my lists
+JSON: {"ops":[{"op":"show_lists"}],"note":""}
 
 Example
 STATE: (same as above)
@@ -198,6 +206,12 @@ def _check(op, s):
             return None, "Bad new name"
         return {"op": "rename_list", "name": name, "new": new[0].upper() + new[1:]}, None
 
+    if kind == "show_lists":
+        return {"op": "show_lists"}, None
+
+    if kind == "sleep":
+        return {"op": "sleep"}, None
+
     return None, None                       # unknown op: drop silently
 
 
@@ -245,12 +259,18 @@ def _say(ops, skipped, note, final_current):
             "switch": lambda: "-> " + o["name"],
             "rename_list": lambda: "Renamed to " + o["new"],
             "delete_list": lambda: "Deleted list " + o["name"],
+            "show_lists": lambda: "Your lists",
+            "sleep": lambda: "Sleeping",
         }[o["op"]]()
     else:
-        kinds = {o["op"] for o in ops if o["op"] != "switch"}
-        n = sum(1 for o in ops if o["op"] != "switch")
-        if kinds == {"add"}:
-            line = "Added " + str(n) + " items"
+        quiet = ("switch", "show_lists", "sleep")      # these show up on screen by themselves
+        kinds = {o["op"] for o in ops if o["op"] not in quiet}
+        n = sum(1 for o in ops if o["op"] not in quiet)
+        if not kinds:
+            last = ops[-1]
+            line = {"show_lists": "Your lists", "sleep": "Sleeping"}.get(last["op"]) or "-> " + last.get("name", "")
+        elif kinds == {"add"}:
+            line = "Added " + str(n) + (" item" if n == 1 else " items")
         elif kinds == {"check"}:
             line = "Checked off " + str(n)
         elif kinds == {"new_list", "add"}:
@@ -278,11 +298,38 @@ def validate(raw, state):
     return {"ops": ops, "say": _say(ops, skipped, note, s["current"]), "skipped": skipped}
 
 
+# ---------- fast path: plain sleep commands skip the AI entirely ----------
+SLEEP_PHRASES = {
+    "sleep", "go to sleep", "sleep now", "goodnight", "good night",
+    "night night", "go to bed", "lights out", "turn off", "power down",
+}
+
+# "open my list", "show all lists", "go to my lists" ... (speech-to-text often drops the s)
+SHOW_PHRASES = {
+    (v + " " + o).strip()
+    for v in ("", "open", "show", "show me", "go to", "see", "view", "back to")
+    for o in ("my lists", "my list", "lists", "all lists", "all my lists", "the lists", "list of lists")
+}
+
+
+def _norm(text):
+    t = "".join(c for c in text.lower() if c.isalnum() or c.isspace())
+    words = t.split()
+    while words and words[0] in ("hey", "ok", "okay", "aurelius"):   # "Aurelius, sleep."
+        words = words[1:]
+    return " ".join(words)
+
+
 def transcript_to_ops(transcript, state):
     """The one function the relay's /voice endpoint will call."""
     transcript = (transcript or "").strip()
     if not transcript:
         return {"ops": [], "say": "Heard nothing", "skipped": []}
+    said = _norm(transcript)
+    if said in SLEEP_PHRASES:
+        return {"ops": [{"op": "sleep"}], "say": "Sleeping", "skipped": []}
+    if said in SHOW_PHRASES:
+        return {"ops": [{"op": "show_lists"}], "say": "Your lists", "skipped": []}
     try:
         raw = ask_model(transcript, state)
     except Exception as e:

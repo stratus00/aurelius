@@ -5,11 +5,14 @@ import voice, net, lists, led
 _up = Pin(2)                  # existing pins, not reconfigured (buttons.py owns them)
 _act = Pin(4)
 MIN_BYTES = 32000 * 4 // 10   # under 0.4 s = treat as an accidental press
+show_picker = False           # command asked to open the list picker
+go_sleep = False              # command asked the device to sleep
 
 def _held():
     return _up.value() == 0 or _act.value() == 0
 
 def _apply(op):
+    global show_picker, go_sleep
     k = op.get("op")
     L = op.get("list")
     if k == "add":
@@ -32,12 +35,18 @@ def _apply(op):
         return lists.rename_list(op["name"], op["new"])
     elif k == "delete_list":
         return lists.delete_list(op["name"])
+    elif k == "show_lists":
+        show_picker = True
+    elif k == "sleep":
+        go_sleep = True
     else:
         return False
     return True
 
 def run():
     # call while UP+ACTION is held. returns the one-line confirm for the screen.
+    global show_picker, go_sleep
+    show_picker = go_sleep = False
     led.pulse()
     ok = 0
     try:
@@ -66,5 +75,5 @@ def run():
         return res.get("say", "?")
     finally:
         led.off()
-        if ok:
+        if ok and not go_sleep:
             led.blink()

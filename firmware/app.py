@@ -12,7 +12,7 @@ asleep = False
 _pins = [Pin(2), Pin(3), Pin(4)]    # UP, DOWN, ACTION (read-only here)
 
 def list_view(e):
-    global sel, psel, mode
+    global sel, psel, mode, asleep
     n = len(lists.items())
     if e == "UP" and sel > 0:
         sel -= 1
@@ -32,6 +32,17 @@ def list_view(e):
         if lists.current_name() != before:
             sel = 0
         sel = max(0, min(sel, len(lists.items()) - 1))
+        if voicecmd.go_sleep:               # "sleep" / "goodnight"
+            display.saver()
+            asleep = True
+            return
+        if voicecmd.show_picker:            # "open my lists"
+            mode = "picker"
+            psel = lists.names().index(lists.current_name())
+            display.draw_picker(psel)
+            if say != "Your lists":         # other changes too -> show what happened
+                display.toast(say)
+            return
         display.draw_list(sel)
         display.toast(say)
         return
