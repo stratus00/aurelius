@@ -141,3 +141,27 @@ shorthand. newest at bottom. did / broke / fix / next.
 - playback via relay/pcm2wav.py + afplay = static. rawdump v1-v3 -> only top 8 bits arriving -> hardware. rewired + resoldered -> clean audio.
 - full write-up: docs/audio-debug.md.
 - next: V2 upload rec to relay /voice.
+
+## 2026-10-19
+- V4 (Mac only, no Pico): relay/voice_ops.py = transcript + lists.json -> DeepSeek (deepseek-v4-flash, JSON mode) -> validate() -> {"ops", "say"}.
+- ops map 1:1 onto lists.py: add / check / uncheck / delete / clear_done / new_list / switch / rename_list / delete_list.
+- validate() replays every op on a copy of the real lists: fuzzy names snap to exact spelling, impossible ops dropped w/ reason, ASCII fold for the 8x8 font. confirm line built in code, <= 36 chars.
+- key in ~/aurelius-relay/.env (gitignored), openai pkg in the relay venv.
+- test_ops.py: --offline 13/13 (fake model replies). live 14/14 correct, 0.8-2.8 s each.
+- watch: "at mail professor" -> checked off Email professor. reversible, left as is.
+
+## 2026-10-20
+- V2: Pico -> relay upload. net.py v1 = raw socket POST /voice, body = lists.json + PCM, X-State-Len header splits them. BUF sent as 4 KB memoryview slices, never copied (MemoryError lesson, #26). server v2 saves clips/*.wav.
+- vtest.py: wifi ok, free RAM 248672, 3.07 s clip, WAV plays back clean on the Mac.
+- V3: stt.py, faster-whisper base.en, int8 CPU. first run crashed: PyAV 19 rejects faster-whisper's metadata_errors arg -> read WAV w/ wave + numpy, PyAV skipped. 0.6 s for "Add batteries to lab." model download 43 s once, then 1.3 s load.
+- server v3: /voice = save WAV -> STT -> voice_ops -> reply. whisper loads at startup.
+- full loop from vtest: "Add Morning Run to my to-do list." -> add op back in 3180 ms.
+- V5: voicecmd.py (record -> upload -> apply ops via lists.py), app v3 (UP+ACTION = real voice, _settle() drains buttons after), display v5 toast() banner, net v2 (wifi joins at boot, 15 s timeout).
+- NameError 'voice' in app.py run() = new app.py not actually on the Pico. re-pasted whole file from the Pico copy -> fixed.
+- V5 table 9/9 incl. standalone w/ Thonny closed. voice works.
+- "Open my list." -> "No list name given" (Whisper drops the s, no op for the picker). added show_lists op + fast path phrases (singular/plural) that skip the AI.
+- sleep op: "sleep", "goodnight", "go to bed", ... fast path, 0.0 s AI. combined ("add milk and go to sleep") via DeepSeek. voicecmd v2, app v4, voice_ops v2.
+- snags: commands pasted into the running relay window, Terminal blocked from ~/Downloads, replugged w/ UP held (escape hatch) -> looked stuck on plaque.
+- breadboard Aurelius = fully functional. P8 done.
+- full write-up w/ code: docs/voice-pipeline.md.
+- next: P9 portable power.

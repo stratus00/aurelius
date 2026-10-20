@@ -86,7 +86,7 @@ rules:
  "message": "Added 2 to Groceries"}
 ```
 - allowed ops: add, check, uncheck, delete, new_list, delete_list, rename, clear_done. anything else rejected.
-- relay endpoints: /health (done), /voice (todo).
+- relay endpoints: /health (done), /voice (done).
 - Pico 2 W = 2.4 GHz only, no eduroam/enterprise login -> phone hotspot.
 
 ## power + enclosure (planned)
@@ -100,9 +100,9 @@ rules:
   - salvaged parts -> parts bin, not trash
 
 ## open decisions
-- [ ] voice: push-to-talk (record while held) vs auto-stop on silence
+- [x] voice: push-to-talk (record while held) — built
 - [x] list switching: DOWN+ACTION hold -> picker screen (built)
-- [ ] STT: local vs cloud
+- [x] STT: local faster-whisper base.en on the Mac (0.5-0.7 s/clip)
 - [ ] relay long-term home: laptop / always-on machine / cloud
 - [ ] checked items: stay until cleared vs vanish after a day
 - [ ] housing
